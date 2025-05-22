@@ -40,7 +40,8 @@ async function loadPage(url: string) {
     const title = doc.querySelector('title')?.innerText || 'Untitled'
     document.title = `${title} - WebStyler`
   } catch (err: unknown) {
-    htmlContent.value = `<p class="text-red-600">錯誤：${err.message}</p>`
+    const errorMessage = err instanceof Error ? err.message : String(err)
+    htmlContent.value = `<p class="text-red-600">錯誤：${errorMessage}</p>`
   }
 }
 
